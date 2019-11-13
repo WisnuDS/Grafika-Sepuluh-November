@@ -1,0 +1,3 @@
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/cmake-build-debug/CMakeFiles/edit_cache.dir

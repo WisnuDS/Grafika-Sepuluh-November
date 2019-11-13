@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Bom.h
+GL/gl.h
+-
+GL/glu.h
+-
+GL/glut.h
+-
+complex
+-
+
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Pesawat.h
+GL/gl.h
+-
+GL/glu.h
+-
+GL/glut.h
+-
+Bom.h
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Bom.h
+
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/main.cpp
+GL/gl.h
+-
+GL/glu.h
+-
+GL/glut.h
+-
+cstring
+-
+iostream
+-
+Bom.h
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Bom.h
+Pesawat.h
+/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Pesawat.h
+

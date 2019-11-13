@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Grafika_Sepuluh_November.dir/main.cpp.o  -o Grafika_Sepuluh_November 
