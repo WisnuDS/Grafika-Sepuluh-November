@@ -46,7 +46,7 @@ void tomoColision() {
 //    glEnable(GL_BLEND);
 //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBegin(GL_POLYGON);
-    glColor4f(0, 0, 0, 1);
+    glColor4f(0, 0, 0, 0);
     glVertex2f(tomoColisionPoint[0][0], tomoColisionPoint[1][1]);
     glVertex2f(tomoColisionPoint[1][0], tomoColisionPoint[1][1]);
     glVertex2f(tomoColisionPoint[1][0], tomoColisionPoint[0][1]);
@@ -1164,6 +1164,8 @@ void cetakDebug(){
     char cek[100];
     sprintf(cek,"Nilai Test = %d", test);
     output(88, 1, 255, 255, 255, cek);
+    sprintf(cek,"TomoColision[0][0] = %f TomoColision[0][1] = %f", tomoColisionPoint[0][0],tomoColisionPoint[1][0]);
+    output(9, 1, 255, 255, 255, cek);
 }
 
 void cetakMenu(){
@@ -1186,7 +1188,7 @@ void relativeMenu(){
 void scaneSatu(){
     fullBackground();
     boxMenu();
-//    relativeMenu();
+    relativeMenu();
     cetakMenu();
 }
 
@@ -1259,55 +1261,27 @@ void mouseListenner(int button, int state, int x, int y){
 }
 
 void bomGravitation(int a) {
-    pesawat[0].bom[0].moveBomY --;
-    pesawat[1].bom[0].moveBomY --;
-    pesawat[1].bom[1].moveBomY --;
-    pesawat[2].bom[0].moveBomY --;
-    pesawat[2].bom[1].moveBomY --;
-    pesawat[2].bom[2].moveBomY --;
-    pesawat[3].bom[0].moveBomY --;
-    pesawat[3].bom[1].moveBomY --;
-    pesawat[3].bom[2].moveBomY --;
-    pesawat[3].bom[3].moveBomY --;
-    if (pesawat[0].bom[0].moveBomY < -90 && pesawat[0].moveX == -20) {
-        pesawat[0].bom[0].moveBomY += 90;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < i + 1; ++j) {
+            pesawat[i].bom[j].moveBomY --;
+        }
     }
-    if (pesawat[1].bom[0].moveBomY < -90 && pesawat[1].moveX == -20) {
-        pesawat[1].bom[0].moveBomY += 90;
-    }
-    if (pesawat[1].bom[1].moveBomY < -90 && pesawat[1].moveX == -20) {
-        pesawat[1].bom[1].moveBomY += 90;
-    }
-    if (pesawat[2].bom[0].moveBomY < -90 && pesawat[2].moveX == -20) {
-        pesawat[2].bom[0].moveBomY += 90;
-    }
-    if (pesawat[2].bom[1].moveBomY < -90 && pesawat[2].moveX == -20) {
-        pesawat[2].bom[1].moveBomY += 90;
-    }
-    if (pesawat[2].bom[2].moveBomY < -90 && pesawat[2].moveX == -20) {
-        pesawat[2].bom[2].moveBomY += 90;
-    }
-    if (pesawat[3].bom[0].moveBomY < -90 && pesawat[3].moveX == -20) {
-        pesawat[3].bom[0].moveBomY += 90;
-    }
-    if (pesawat[3].bom[1].moveBomY < -90 && pesawat[3].moveX == -20) {
-        pesawat[3].bom[1].moveBomY += 90;
-    }
-    if (pesawat[3].bom[2].moveBomY < -90 && pesawat[3].moveX == -20) {
-        pesawat[3].bom[2].moveBomY += 90;
-    }
-    if (pesawat[3].bom[3].moveBomY < -90 && pesawat[3].moveX == -20) {
-        pesawat[3].bom[3].moveBomY += 90;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < i + 1; ++j) {
+            if (pesawat[i].bom[j].moveBomY < -90 && pesawat[i].moveX == -20) {
+                pesawat[i].bom[j].moveBomY += 90;
+            }
+        }
     }
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < i+1; ++j) {
             if (pesawat[i].bom[j].glCollision(tomoColisionPoint)){
                 test += 1;
-                goto hell;
+                pesawat[i].bom[j].moveBomY=200;
+                pesawat[i].bom[j].moveBomX=200;
             }
         }
     }
-    hell:
     glutPostRedisplay();
     glutTimerFunc(10, bomGravitation, 1);
 }

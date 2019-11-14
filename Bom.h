@@ -89,10 +89,10 @@ public:
     }
 
     void movebom() {
-        relativeXBomA = bomColisionPoint[1][0] + moveBomX;
-        relativeXBomB = bomColisionPoint[0][0] + moveBomX;
-        relativeYBomA = bomColisionPoint[0][1] + moveBomY;
-        relativeYBomB = bomColisionPoint[1][1] + moveBomY;
+        relativeXBomA = (bomColisionPoint[0][0]-20) + moveBomX;
+        relativeXBomB = (bomColisionPoint[1][0]-20) + moveBomX;
+        relativeYBomA = (bomColisionPoint[0][1]) + moveBomY;
+        relativeYBomB = (bomColisionPoint[1][1]) + moveBomY;
         glPushMatrix();
         glTranslated(moveBomX, moveBomY, 0);
         bom();
@@ -101,10 +101,11 @@ public:
     }
 
     bool glCollision(float tomoColisionPoint[2][2]){
+        printf("Relative Y A = %f Relative Y B = %f\n", relativeXBomA,relativeXBomB);
         return (((relativeXBomA >= tomoColisionPoint[0][0]) && (relativeXBomA <= tomoColisionPoint[1][0])) &&
-                (relativeYBomB < tomoColisionPoint[0][1])) ||
+                (relativeYBomB == tomoColisionPoint[0][1])) ||
                (((relativeXBomB >= tomoColisionPoint[0][0]) && (relativeXBomB <= tomoColisionPoint[1][0])) &&
-                (relativeYBomB < tomoColisionPoint[0][1]));
+                (relativeYBomB == tomoColisionPoint[0][1]));
     }
 
 };
