@@ -40,6 +40,78 @@ int test = 0;
 
 bool mouseColision;
 
+int nyawa = 5;
+
+bool scane3;
+
+void resetAll();
+
+void hati(){
+    glPushMatrix();
+    glScaled(0.3,0.3,0);
+    glTranslated(480,0,0);
+    glBegin(GL_POLYGON);
+    glColor3ub(255,0,0);
+    glVertex2f(81,1);
+    glVertex2f(82,1);
+    glVertex2f(82,2);
+    glVertex2f(83,2);
+    glVertex2f(83,3);
+    glVertex2f(84,3);
+    glVertex2f(84,4);
+    glVertex2f(85,4);
+    glVertex2f(85,5);
+    glVertex2f(86,5);
+    glVertex2f(86,6);
+    glVertex2f(87,6);
+    glVertex2f(87,7);
+    glVertex2f(88,7);
+    glVertex2f(88,13);
+    glVertex2f(87,13);
+    glVertex2f(87,14);
+    glVertex2f(86,14);
+    glVertex2f(86,15);
+    glVertex2f(83,15);
+    glVertex2f(83,14);
+    glVertex2f(82,14);
+    glVertex2f(82,13);
+    glVertex2f(81,13);
+    glVertex2f(81,14);
+    glVertex2f(80,14);
+    glVertex2f(80,15);
+    glVertex2f(77,15);
+    glVertex2f(77,14);
+    glVertex2f(76,14);
+    glVertex2f(76,13);
+    glVertex2f(75,13);
+    glVertex2f(75,7);
+    glVertex2f(76,7);
+    glVertex2f(76,6);
+    glVertex2f(77,6);
+    glVertex2f(77,5);
+    glVertex2f(78,5);
+    glVertex2f(78,4);
+    glVertex2f(79,4);
+    glVertex2f(79,3);
+    glVertex2f(80,3);
+    glVertex2f(80,2);
+    glVertex2f(81,2);
+    glEnd();
+    glPopMatrix();
+
+}
+
+void displayNyawa(){
+    int a = 0;
+    for (int i = 0; i < nyawa; ++i) {
+        glPushMatrix();
+        glTranslated(a, 0, 0);
+        hati();
+        glPopMatrix();
+        a -= 5;
+    }
+}
+
 void tomoColision() {
     glPushMatrix();
 //    glScaled(0.6,0.6,0);
@@ -1115,6 +1187,20 @@ void background(void) {
     glEnd();
 }
 
+void backgroundTransparent(void) {
+    glPushMatrix();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBegin(GL_POLYGON);
+    glColor4f(0.0f, 0.0f, 0.0f,0.5f);
+    glVertex2f(0, 91);
+    glVertex2f(171, 91);
+    glVertex2f(171, 0);
+    glVertex2f(0, 0);
+    glEnd();
+    glPopMatrix();
+}
+
 void fullBackground(){
     background();
     perkotaan();
@@ -1127,7 +1213,7 @@ void boxMenu(){
     glTranslated(24,0,0);
     glScaled(40,30,0);
     glBegin(GL_QUADS);
-    glColor3ub(46, 28, 10);
+    glColor3ub(250, 210, 100);
     glVertex2f(1,1);
     glVertex2f(1,2);
     glVertex2f(2,2);
@@ -1136,13 +1222,13 @@ void boxMenu(){
     glPopMatrix();
 }
 
-void output(int x, int y, float r, float g, float b, char *string) {
+void output(int x, int y, float r, float g, float b, char *string, void *font) {
     glColor3f(r, g, b);
     glRasterPos2f(x, y);
     int len, i;
     len = (int) strlen(string);
     for (i = 0; i < len; i++) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
+        glutBitmapCharacter(font, string[i]);
     }
 }
 
@@ -1157,39 +1243,33 @@ void cetakTimer() {
         menit = 0;
     }
     sprintf(timer, "%d:%d:%d", jam, menit, waktuTimer);
-    output(1, 1, 255, 255, 255, timer);
-}
-
-void cetakDebug(){
-    char cek[100];
-    sprintf(cek,"Nilai Test = %d", test);
-    output(88, 1, 255, 255, 255, cek);
-    sprintf(cek,"TomoColision[0][0] = %f TomoColision[0][1] = %f", tomoColisionPoint[0][0],tomoColisionPoint[1][0]);
-    output(9, 1, 255, 255, 255, cek);
+    output(1, 1, 0, 0, 0, timer, GLUT_BITMAP_HELVETICA_18);
 }
 
 void cetakMenu(){
     char menu[100];
     sprintf(menu,"Mulai Game");
-    output(76, 44, 255, 255, 255, menu);
+    output(76, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
 }
 
 void relativeMenu(){
     glBegin(GL_QUADS);
-    glColor3ub(0, 0, 0);
-    glVertex2f(76,42);
-    glVertex2f(92,42);
-    glVertex2f(92,47);
-    glVertex2f(76,47);
+    glColor3ub(255, 255, 255);
+    glVertex2f(74,41);
+    glVertex2f(93,41);
+    glVertex2f(93,48);
+    glVertex2f(74,48);
     glEnd();
 }
 
 
 void scaneSatu(){
     fullBackground();
+    backgroundTransparent();
     boxMenu();
     relativeMenu();
     cetakMenu();
+
 }
 
 void scaneDua(){
@@ -1220,8 +1300,29 @@ void scaneDua(){
         pesawat[3].movePesawat();
     }
     cetakTimer();
-    cetakDebug();
+    displayNyawa();
+}
 
+void cetakHasilAkhir(){
+    char timer[100];
+    output(75,55,0,0,0,"GAME OVER",GLUT_BITMAP_TIMES_ROMAN_24);
+    output(69,52,0,0,0,"Waktu Bertahan Anda adalah:",GLUT_BITMAP_HELVETICA_18);
+    sprintf(timer, "%d:%d:%d", jam, menit, waktuTimer);
+    output(80,47,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
+}
+
+void scaneTiga(){
+    char menu[100];
+    sprintf(menu,"Mulai Lagi");
+    fullBackground();
+    backgroundTransparent();
+    boxMenu();
+    cetakHasilAkhir();
+    glPushMatrix();
+    glTranslated(0,-6,0);
+    relativeMenu();
+    output(79, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
+    glPopMatrix();
 }
 
 //Movement
@@ -1244,7 +1345,6 @@ void keyboardListener(int key, int x, int y) {
             glutPostRedisplay();
         }
     }
-
 }
 
 void mouseListenner(int button, int state, int x, int y){
@@ -1253,11 +1353,29 @@ void mouseListenner(int button, int state, int x, int y){
     posY = 91-(y/8);
     char debug[100];
     if(button == GLUT_LEFT_BUTTON && state == GLUT_ENTERED){
-        if(posX>76 && posX<92 && posY>42 && posY< 47){
+        if(posX>74 && posX<93 && posY>41 && posY< 48){
+            resetAll();
             mouseColision = true;
+        }
+        if(posX>74 && posX<93 && posY>35 && posY< 42){
+            resetAll();
         }
     }
     glutPostRedisplay();
+}
+
+void resetAll() {
+    nyawa = 5;
+    waktuBom=0;
+    waktuTimer=0;
+    waktuUmum=0;
+    scane3 = false;
+    jam = 0;
+    menit = 0;
+    for (int i = 0; i < 4; ++i) {
+        pesawat[i].moveX=0;
+    }
+    mouseColision= true;
 }
 
 void bomGravitation(int a) {
@@ -1276,7 +1394,7 @@ void bomGravitation(int a) {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < i+1; ++j) {
             if (pesawat[i].bom[j].glCollision(tomoColisionPoint)){
-                test += 1;
+                nyawa--;
                 pesawat[i].bom[j].moveBomY=200;
                 pesawat[i].bom[j].moveBomX=200;
             }
@@ -1287,74 +1405,78 @@ void bomGravitation(int a) {
 }
 
 void generalTimer(int b) {
-    waktuUmum++;
-    waktuTimer++;
+    if(mouseColision){
+        waktuUmum++;
+        waktuTimer++;
+    }
     glutTimerFunc(1000, generalTimer, 1);
 }
 
 void generalMovement(int a) {
-    pesawat[0].moveX++;
-    if(pesawat[0].moveX>200){
-        pesawat[0].moveX -= 220;
-    }
-    if (waktuBom < 7) {
-        pesawat[0].bom[0].moveBomX = pesawat[0].moveX;
-        pesawat[0].bom[0].moveBomY = 0;
-    }
-    //pesawat[1]
-    if (waktuUmum > 30){
-        pesawat[1].moveX++;
-        if(pesawat[1].moveX>200){
-            pesawat[1].moveX-=220;
+    if(mouseColision) {
+        pesawat[0].moveX++;
+        if (pesawat[0].moveX > 200) {
+            pesawat[0].moveX -= 220;
         }
-        if (waktuBom < 10) {
-            pesawat[1].bom[0].moveBomX = pesawat[1].moveX;
-            pesawat[1].bom[0].moveBomY = 0;
+        if (waktuBom < 7) {
+            pesawat[0].bom[0].moveBomX = pesawat[0].moveX;
+            pesawat[0].bom[0].moveBomY = 0;
         }
-        if(waktuBom < 40){
-            pesawat[1].bom[1].moveBomX = pesawat[1].moveX;
-            pesawat[1].bom[1].moveBomY = 0;
+        //pesawat[1]
+        if (waktuUmum > 30) {
+            pesawat[1].moveX++;
+            if (pesawat[1].moveX > 200) {
+                pesawat[1].moveX -= 220;
+            }
+            if (waktuBom < 10) {
+                pesawat[1].bom[0].moveBomX = pesawat[1].moveX;
+                pesawat[1].bom[0].moveBomY = 0;
+            }
+            if (waktuBom < 40) {
+                pesawat[1].bom[1].moveBomX = pesawat[1].moveX;
+                pesawat[1].bom[1].moveBomY = 0;
+            }
         }
-    }
-    //pesawat[2]
-    if (waktuUmum > 91){
-        pesawat[2].moveX++;
-        if(pesawat[2].moveX>200){
-            pesawat[2].moveX-=220;
+        //pesawat[2]
+        if (waktuUmum > 91) {
+            pesawat[2].moveX++;
+            if (pesawat[2].moveX > 200) {
+                pesawat[2].moveX -= 220;
+            }
+            if (waktuBom < 10) {
+                pesawat[2].bom[0].moveBomX = pesawat[2].moveX;
+                pesawat[2].bom[0].moveBomY = 0;
+            }
+            if (waktuBom < 40) {
+                pesawat[2].bom[1].moveBomX = pesawat[2].moveX;
+                pesawat[2].bom[1].moveBomY = 0;
+            }
+            if (waktuBom < 70) {
+                pesawat[2].bom[2].moveBomX = pesawat[2].moveX;
+                pesawat[2].bom[2].moveBomY = 0;
+            }
         }
-        if (waktuBom < 10) {
-            pesawat[2].bom[0].moveBomX = pesawat[2].moveX;
-            pesawat[2].bom[0].moveBomY = 0;
-        }
-        if(waktuBom < 40){
-            pesawat[2].bom[1].moveBomX = pesawat[2].moveX;
-            pesawat[2].bom[1].moveBomY = 0;
-        }
-        if(waktuBom < 70){
-            pesawat[2].bom[2].moveBomX = pesawat[2].moveX;
-            pesawat[2].bom[2].moveBomY = 0;
-        }
-    }
-    if (waktuUmum > 154){
-        pesawat[3].moveX++;
-        if(pesawat[3].moveX>200){
-            pesawat[3].moveX-=220;
-        }
-        if (waktuBom < 10) {
-            pesawat[3].bom[0].moveBomX = pesawat[3].moveX;
-            pesawat[3].bom[0].moveBomY = 0;
-        }
-        if(waktuBom < 30){
-            pesawat[3].bom[1].moveBomX = pesawat[3].moveX;
-            pesawat[3].bom[1].moveBomY = 0;
-        }
-        if(waktuBom < 50){
-            pesawat[3].bom[2].moveBomX = pesawat[3].moveX;
-            pesawat[3].bom[2].moveBomY = 0;
-        }
-        if(waktuBom < 60){
-            pesawat[3].bom[3].moveBomX = pesawat[3].moveX;
-            pesawat[3].bom[3].moveBomY = 0;
+        if (waktuUmum > 154) {
+            pesawat[3].moveX++;
+            if (pesawat[3].moveX > 200) {
+                pesawat[3].moveX -= 220;
+            }
+            if (waktuBom < 10) {
+                pesawat[3].bom[0].moveBomX = pesawat[3].moveX;
+                pesawat[3].bom[0].moveBomY = 0;
+            }
+            if (waktuBom < 30) {
+                pesawat[3].bom[1].moveBomX = pesawat[3].moveX;
+                pesawat[3].bom[1].moveBomY = 0;
+            }
+            if (waktuBom < 50) {
+                pesawat[3].bom[2].moveBomX = pesawat[3].moveX;
+                pesawat[3].bom[2].moveBomY = 0;
+            }
+            if (waktuBom < 60) {
+                pesawat[3].bom[3].moveBomX = pesawat[3].moveX;
+                pesawat[3].bom[3].moveBomY = 0;
+            }
         }
     }
     glutPostRedisplay();
@@ -1362,7 +1484,9 @@ void generalMovement(int a) {
 }
 
 void timerBom(int a) {
-    waktuBom++;
+    if (mouseColision){
+        waktuBom++;
+    }
     if (waktuBom == 150) {
         waktuBom = 0;
     }
@@ -1373,11 +1497,18 @@ void timerBom(int a) {
 void displayMe(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    scaneTiga();
     scaneSatu();
     if(mouseColision){
         scaneDua();
+        if(nyawa == 0){
+            mouseColision = false;
+            scane3 = true;
+        }
     }
-    glEnd();
+    if(scane3){
+        scaneTiga();
+    }
     glutSwapBuffers();
 }
 

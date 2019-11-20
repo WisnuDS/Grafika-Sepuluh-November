@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f524029d-921b-4a34-963d-b171fb7cea3e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bom.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bom.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OpenGLLinuxTest1" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OpenGLLinuxTest1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -75,7 +75,20 @@
       <workItem from="1573535937260" duration="22114000" />
       <workItem from="1573647291612" duration="2643000" />
       <workItem from="1573656019439" duration="2457000" />
-      <workItem from="1573701975468" duration="14706000" />
+      <workItem from="1573701975468" duration="15022000" />
+      <workItem from="1573787032809" duration="1834000" />
+      <workItem from="1573795078584" duration="2938000" />
+      <workItem from="1573895987326" duration="3932000" />
+      <workItem from="1573952115417" duration="618000" />
+      <workItem from="1573998037791" duration="114000" />
+      <workItem from="1573999473013" duration="1256000" />
+      <workItem from="1574029241359" duration="876000" />
+      <workItem from="1574033207044" duration="1518000" />
+      <workItem from="1574048145661" duration="2197000" />
+      <workItem from="1574061697819" duration="232000" />
+      <workItem from="1574063312106" duration="10391000" />
+      <workItem from="1574130528837" duration="4419000" />
+      <workItem from="1574220356886" duration="4554000" />
     </task>
     <servers />
   </component>
