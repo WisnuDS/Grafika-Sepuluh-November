@@ -101,7 +101,7 @@ public:
     }
 
     bool glCollision(float tomoColisionPoint[2][2]){
-        printf("Relative Y A = %f Relative Y B = %f\n", relativeXBomA,relativeXBomB);
+//        printf("Relative Y A = %f Relative Y B = %f\n", relativeXBomA,relativeXBomB);
         return (((relativeXBomA >= tomoColisionPoint[0][0]) && (relativeXBomA <= tomoColisionPoint[1][0])) &&
                 (relativeYBomB == tomoColisionPoint[0][1])) ||
                (((relativeXBomB >= tomoColisionPoint[0][0]) && (relativeXBomB <= tomoColisionPoint[1][0])) &&

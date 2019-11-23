@@ -33,9 +33,13 @@ GL/glu.h
 -
 GL/glut.h
 -
+string
+-
 cstring
 -
 iostream
+-
+fstream
 -
 Bom.h
 /home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/Bom.h

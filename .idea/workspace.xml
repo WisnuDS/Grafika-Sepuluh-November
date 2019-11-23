@@ -13,6 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f524029d-921b-4a34-963d-b171fb7cea3e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bom.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bom.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OpenGLLinuxTest1.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OpenGLLinuxTest1" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OpenGLLinuxTest1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -25,6 +27,20 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
@@ -88,7 +104,10 @@
       <workItem from="1574061697819" duration="232000" />
       <workItem from="1574063312106" duration="10391000" />
       <workItem from="1574130528837" duration="4419000" />
-      <workItem from="1574220356886" duration="4554000" />
+      <workItem from="1574220356886" duration="12039000" />
+      <workItem from="1574411478071" duration="8256000" />
+      <workItem from="1574490984907" duration="7674000" />
+      <workItem from="1574499658762" duration="10080000" />
     </task>
     <servers />
   </component>

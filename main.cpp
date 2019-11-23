@@ -1,8 +1,10 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include <string>
 #include <cstring>
 #include <iostream>
+#include <fstream>
 #include "Bom.h"
 #include "Pesawat.h"
 
@@ -43,6 +45,18 @@ bool mouseColision;
 int nyawa = 5;
 
 bool scane3;
+
+bool tomorespawn;
+
+int penanda;
+
+int spawn;
+
+bool colisionCek = true;
+
+int HighScore;
+
+char temp[10];
 
 void resetAll();
 
@@ -1303,12 +1317,31 @@ void scaneDua(){
     displayNyawa();
 }
 
+void cekHighScore(){
+//    HighScore.copy(temp, 8, 0);
+
+
+}
+
+std::string secondToTime(int a){
+    std::string time;
+    int jamLocal = a/3600;
+    int menitLocal = (a%3600)/60;
+    int detik = (a%60);
+    time = std::to_string(jamLocal)+":"+std::to_string(menitLocal)+":"+std::to_string(detik);
+    return time;
+}
+
 void cetakHasilAkhir(){
     char timer[100];
     output(75,55,0,0,0,"GAME OVER",GLUT_BITMAP_TIMES_ROMAN_24);
     output(69,52,0,0,0,"Waktu Bertahan Anda adalah:",GLUT_BITMAP_HELVETICA_18);
     sprintf(timer, "%d:%d:%d", jam, menit, waktuTimer);
-    output(80,47,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
+    output(80,48,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
+    output(69,43,0,0,0,"Skor Tertinggi Hingga Saat Ini:",GLUT_BITMAP_HELVETICA_18);
+    sprintf(timer, "%s", secondToTime(HighScore).c_str());
+//    printf("Cek : %s",HighScore.c_str());
+    output(80,38,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
 }
 
 void scaneTiga(){
@@ -1316,13 +1349,28 @@ void scaneTiga(){
     sprintf(menu,"Mulai Lagi");
     fullBackground();
     backgroundTransparent();
-    boxMenu();
-    cetakHasilAkhir();
+
     glPushMatrix();
-    glTranslated(0,-6,0);
-    relativeMenu();
-    output(79, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
+    glScaled(1,1.5,0);
+    glTranslated(0,-15,0);
+    boxMenu();
     glPopMatrix();
+
+    glPushMatrix();
+    glTranslated(0,8,0);
+    cetakHasilAkhir();
+    glPopMatrix();
+
+    glPushMatrix();
+    glScaled(1,0.6,0);
+    glTranslated(0,23,0);
+    relativeMenu();
+    output(78.5, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
+    glTranslated(0,-8,0);
+    relativeMenu();
+    output(81.5, 44, 0, 0, 0, "Exit", GLUT_BITMAP_HELVETICA_18);
+    glPopMatrix();
+
 }
 
 //Movement
@@ -1352,13 +1400,17 @@ void mouseListenner(int button, int state, int x, int y){
     posX = x/8;
     posY = 91-(y/8);
     char debug[100];
+//    printf("x : %d Y : %d\n",posX,posY);
     if(button == GLUT_LEFT_BUTTON && state == GLUT_ENTERED){
         if(posX>74 && posX<93 && posY>41 && posY< 48){
             resetAll();
             mouseColision = true;
         }
-        if(posX>74 && posX<93 && posY>35 && posY< 42){
+        if(posX>74 && posX<93 && posY>37 && posY< 42){
             resetAll();
+        }
+        if(posX>74 && posX<93 && posY>35 && posY< 39){
+            exit(0);
         }
     }
     glutPostRedisplay();
@@ -1391,17 +1443,20 @@ void bomGravitation(int a) {
             }
         }
     }
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < i+1; ++j) {
-            if (pesawat[i].bom[j].glCollision(tomoColisionPoint)){
-                nyawa--;
-                pesawat[i].bom[j].moveBomY=200;
-                pesawat[i].bom[j].moveBomX=200;
+    if(colisionCek){
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < i+1; ++j) {
+                if (pesawat[i].bom[j].glCollision(tomoColisionPoint)){
+                    nyawa--;
+                    pesawat[i].bom[j].moveBomY=200;
+                    pesawat[i].bom[j].moveBomX=200;
+                    tomorespawn = true;
+                }
             }
         }
     }
     glutPostRedisplay();
-    glutTimerFunc(10, bomGravitation, 1);
+    glutTimerFunc(1, bomGravitation, 1);
 }
 
 void generalTimer(int b) {
@@ -1480,7 +1535,28 @@ void generalMovement(int a) {
         }
     }
     glutPostRedisplay();
-    glutTimerFunc(10, generalMovement, 1);
+    glutTimerFunc(1, generalMovement, 1);
+}
+
+void spawnTimer(int a){
+    spawn++;
+    if(tomorespawn){
+        colisionCek = false;
+        penanda++;
+        if(spawn % 2 == 0){
+            tomoMove-=200;
+        }else{
+            tomoMove+=200;
+        }
+
+    }
+    if(penanda == 10){
+        penanda = 0;
+        tomorespawn = false;
+        colisionCek = true;
+    }
+    glutPostRedisplay();
+    glutTimerFunc(100,spawnTimer,1);
 }
 
 void timerBom(int a) {
@@ -1494,10 +1570,32 @@ void timerBom(int a) {
     glutTimerFunc(10, timerBom, 1);
 }
 
+void saveNewHighScore(int a){
+    std::string high = std::to_string(a);
+    std::fstream file;
+    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt",std::ios::out);
+    file<<high;
+    file.close();
+}
+
+void getHighScore(){
+    std::fstream file;
+    char x;
+    std::string line;
+    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt",std::ios::in);
+    while (std::getline(file,line)){
+        printf("High Score = %s\n",line.c_str());
+        HighScore = stoi(line);
+    }
+    file.close();
+    printf("High Score = %d\n",HighScore);
+    cekHighScore();
+}
+
 void displayMe(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    scaneTiga();
+//    scaneTiga();
     scaneSatu();
     if(mouseColision){
         scaneDua();
@@ -1507,15 +1605,19 @@ void displayMe(void)
         }
     }
     if(scane3){
+        if(waktuUmum > HighScore){
+            HighScore = waktuUmum;
+            saveNewHighScore(HighScore);
+        }
         scaneTiga();
     }
+    printf("time %d\n",waktuUmum);
     glutSwapBuffers();
 }
 
-
-
 int main(int argc, char** argv)
 {
+    getHighScore();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowSize(1368, 728);
@@ -1524,10 +1626,11 @@ int main(int argc, char** argv)
     glutDisplayFunc(displayMe);
     glutSpecialFunc(keyboardListener);
     glutMouseFunc(mouseListenner);
-    glutTimerFunc(10,generalMovement,1);
-    glutTimerFunc(10,bomGravitation,1);
-    glutTimerFunc(1000,generalTimer,1);
-    glutTimerFunc(10,timerBom,1);
+    glutTimerFunc(1,generalMovement,0);
+    glutTimerFunc(10,bomGravitation,0);
+    glutTimerFunc(1000,generalTimer,0);
+    glutTimerFunc(10,timerBom,0);
+    glutTimerFunc(100,spawnTimer,0);
     gluOrtho2D(0, 171, 0, 91);
     glutMainLoop();
     return 0;
