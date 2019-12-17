@@ -8,7 +8,7 @@
 #include "Bom.h"
 #include "Pesawat.h"
 
-//Gambar-Gambar
+//Deklarasi Variabel Dll
 Pesawat pesawat[5];
 int nilaiX[208] = {78, 86, 86, 78, 79, 79, 86, 86, 81, 81, 86, 86, 82, 82, 86, 86, 82, 87, 87, 82, 82, 87, 87, 82, 82,
                    88, 88, 82, 78, 86, 86, 78, 82, 82, 86, 86, 83, 84, 84, 83, 83, 86, 86, 83, 78, 79, 79, 78, 82, 84,
@@ -60,62 +60,62 @@ char temp[10];
 
 void resetAll();
 
-void hati(){
+void hati() {
     glPushMatrix();
-    glScaled(0.3,0.3,0);
-    glTranslated(480,0,0);
+    glScaled(0.3, 0.3, 0);
+    glTranslated(480, 0, 0);
     glBegin(GL_POLYGON);
-    glColor3ub(255,0,0);
-    glVertex2f(81,1);
-    glVertex2f(82,1);
-    glVertex2f(82,2);
-    glVertex2f(83,2);
-    glVertex2f(83,3);
-    glVertex2f(84,3);
-    glVertex2f(84,4);
-    glVertex2f(85,4);
-    glVertex2f(85,5);
-    glVertex2f(86,5);
-    glVertex2f(86,6);
-    glVertex2f(87,6);
-    glVertex2f(87,7);
-    glVertex2f(88,7);
-    glVertex2f(88,13);
-    glVertex2f(87,13);
-    glVertex2f(87,14);
-    glVertex2f(86,14);
-    glVertex2f(86,15);
-    glVertex2f(83,15);
-    glVertex2f(83,14);
-    glVertex2f(82,14);
-    glVertex2f(82,13);
-    glVertex2f(81,13);
-    glVertex2f(81,14);
-    glVertex2f(80,14);
-    glVertex2f(80,15);
-    glVertex2f(77,15);
-    glVertex2f(77,14);
-    glVertex2f(76,14);
-    glVertex2f(76,13);
-    glVertex2f(75,13);
-    glVertex2f(75,7);
-    glVertex2f(76,7);
-    glVertex2f(76,6);
-    glVertex2f(77,6);
-    glVertex2f(77,5);
-    glVertex2f(78,5);
-    glVertex2f(78,4);
-    glVertex2f(79,4);
-    glVertex2f(79,3);
-    glVertex2f(80,3);
-    glVertex2f(80,2);
-    glVertex2f(81,2);
+    glColor3ub(255, 0, 0);
+    glVertex2f(81, 1);
+    glVertex2f(82, 1);
+    glVertex2f(82, 2);
+    glVertex2f(83, 2);
+    glVertex2f(83, 3);
+    glVertex2f(84, 3);
+    glVertex2f(84, 4);
+    glVertex2f(85, 4);
+    glVertex2f(85, 5);
+    glVertex2f(86, 5);
+    glVertex2f(86, 6);
+    glVertex2f(87, 6);
+    glVertex2f(87, 7);
+    glVertex2f(88, 7);
+    glVertex2f(88, 13);
+    glVertex2f(87, 13);
+    glVertex2f(87, 14);
+    glVertex2f(86, 14);
+    glVertex2f(86, 15);
+    glVertex2f(83, 15);
+    glVertex2f(83, 14);
+    glVertex2f(82, 14);
+    glVertex2f(82, 13);
+    glVertex2f(81, 13);
+    glVertex2f(81, 14);
+    glVertex2f(80, 14);
+    glVertex2f(80, 15);
+    glVertex2f(77, 15);
+    glVertex2f(77, 14);
+    glVertex2f(76, 14);
+    glVertex2f(76, 13);
+    glVertex2f(75, 13);
+    glVertex2f(75, 7);
+    glVertex2f(76, 7);
+    glVertex2f(76, 6);
+    glVertex2f(77, 6);
+    glVertex2f(77, 5);
+    glVertex2f(78, 5);
+    glVertex2f(78, 4);
+    glVertex2f(79, 4);
+    glVertex2f(79, 3);
+    glVertex2f(80, 3);
+    glVertex2f(80, 2);
+    glVertex2f(81, 2);
     glEnd();
     glPopMatrix();
 
 }
 
-void displayNyawa(){
+void displayNyawa() {
     int a = 0;
     for (int i = 0; i < nyawa; ++i) {
         glPushMatrix();
@@ -129,10 +129,10 @@ void displayNyawa(){
 void tomoColision() {
     glPushMatrix();
 //    glScaled(0.6,0.6,0);
-//    glEnable(GL_BLEND);
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBegin(GL_POLYGON);
-    glColor4f(0, 0, 0, 0);
+    glColor4f(0, 0, 0, 1);
     glVertex2f(tomoColisionPoint[0][0], tomoColisionPoint[1][1]);
     glVertex2f(tomoColisionPoint[1][0], tomoColisionPoint[1][1]);
     glVertex2f(tomoColisionPoint[1][0], tomoColisionPoint[0][1]);
@@ -1206,7 +1206,7 @@ void backgroundTransparent(void) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBegin(GL_POLYGON);
-    glColor4f(0.0f, 0.0f, 0.0f,0.5f);
+    glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
     glVertex2f(0, 91);
     glVertex2f(171, 91);
     glVertex2f(171, 0);
@@ -1215,23 +1215,23 @@ void backgroundTransparent(void) {
     glPopMatrix();
 }
 
-void fullBackground(){
+void fullBackground() {
     background();
     perkotaan();
     tumbuhan();
     backgroundJalan();
 }
 
-void boxMenu(){
+void boxMenu() {
     glPushMatrix();
-    glTranslated(24,0,0);
-    glScaled(40,30,0);
+    glTranslated(24, 0, 0);
+    glScaled(40, 30, 0);
     glBegin(GL_QUADS);
     glColor3ub(250, 210, 100);
-    glVertex2f(1,1);
-    glVertex2f(1,2);
-    glVertex2f(2,2);
-    glVertex2f(2,1);
+    glVertex2f(1, 1);
+    glVertex2f(1, 2);
+    glVertex2f(2, 2);
+    glVertex2f(2, 1);
     glEnd();
     glPopMatrix();
 }
@@ -1260,24 +1260,23 @@ void cetakTimer() {
     output(1, 1, 0, 0, 0, timer, GLUT_BITMAP_HELVETICA_18);
 }
 
-void cetakMenu(){
+void cetakMenu() {
     char menu[100];
-    sprintf(menu,"Mulai Game");
+    sprintf(menu, "Mulai Game");
     output(76, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
 }
 
-void relativeMenu(){
+void relativeMenu() {
     glBegin(GL_QUADS);
     glColor3ub(255, 255, 255);
-    glVertex2f(74,41);
-    glVertex2f(93,41);
-    glVertex2f(93,48);
-    glVertex2f(74,48);
+    glVertex2f(74, 41);
+    glVertex2f(93, 41);
+    glVertex2f(93, 48);
+    glVertex2f(74, 48);
     glEnd();
 }
 
-
-void scaneSatu(){
+void scaneSatu() {
     fullBackground();
     backgroundTransparent();
     boxMenu();
@@ -1286,27 +1285,27 @@ void scaneSatu(){
 
 }
 
-void scaneDua(){
+void scaneDua() {
     fullBackground();
     tomoColision();
     glPushMatrix();
-    glTranslated(tomoMove,0,0);
+    glTranslated(tomoMove, 0, 0);
     tomo();
     glPopMatrix();
     pesawat[0].bom[0].movebom();
     pesawat[0].movePesawat();
-    if(waktuUmum > 30){
+    if (waktuUmum > 30) {
         pesawat[1].bom[0].movebom();
         pesawat[1].bom[1].movebom();
         pesawat[1].movePesawat();
     }
-    if(waktuUmum > 91){
+    if (waktuUmum > 91) {
         pesawat[2].bom[0].movebom();
         pesawat[2].bom[1].movebom();
         pesawat[2].bom[2].movebom();
         pesawat[2].movePesawat();
     }
-    if(waktuUmum > 154){
+    if (waktuUmum > 154) {
         pesawat[3].bom[0].movebom();
         pesawat[3].bom[1].movebom();
         pesawat[3].bom[2].movebom();
@@ -1317,64 +1316,56 @@ void scaneDua(){
     displayNyawa();
 }
 
-void cekHighScore(){
-//    HighScore.copy(temp, 8, 0);
-
-
-}
-
-std::string secondToTime(int a){
+std::string secondToTime(int a) {
     std::string time;
-    int jamLocal = a/3600;
-    int menitLocal = (a%3600)/60;
-    int detik = (a%60);
-    time = std::to_string(jamLocal)+":"+std::to_string(menitLocal)+":"+std::to_string(detik);
+    int jamLocal = a / 3600;
+    int menitLocal = (a % 3600) / 60;
+    int detik = (a % 60);
+    time = std::to_string(jamLocal) + ":" + std::to_string(menitLocal) + ":" + std::to_string(detik);
     return time;
 }
 
-void cetakHasilAkhir(){
+void cetakHasilAkhir() {
     char timer[100];
-    output(75,55,0,0,0,"GAME OVER",GLUT_BITMAP_TIMES_ROMAN_24);
-    output(69,52,0,0,0,"Waktu Bertahan Anda adalah:",GLUT_BITMAP_HELVETICA_18);
+    output(75, 55, 0, 0, 0, "GAME OVER", GLUT_BITMAP_TIMES_ROMAN_24);
+    output(69, 52, 0, 0, 0, "Waktu Bertahan Anda adalah:", GLUT_BITMAP_HELVETICA_18);
     sprintf(timer, "%d:%d:%d", jam, menit, waktuTimer);
-    output(80,48,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
-    output(69,43,0,0,0,"Skor Tertinggi Hingga Saat Ini:",GLUT_BITMAP_HELVETICA_18);
+    output(80, 48, 0, 0, 0, timer, GLUT_BITMAP_TIMES_ROMAN_24);
+    output(69, 43, 0, 0, 0, "Skor Tertinggi Hingga Saat Ini:", GLUT_BITMAP_HELVETICA_18);
     sprintf(timer, "%s", secondToTime(HighScore).c_str());
-//    printf("Cek : %s",HighScore.c_str());
-    output(80,38,0,0,0,timer,GLUT_BITMAP_TIMES_ROMAN_24);
+    output(80, 38, 0, 0, 0, timer, GLUT_BITMAP_TIMES_ROMAN_24);
 }
 
-void scaneTiga(){
+void scaneTiga() {
     char menu[100];
-    sprintf(menu,"Mulai Lagi");
+    sprintf(menu, "Mulai Lagi");
     fullBackground();
     backgroundTransparent();
 
     glPushMatrix();
-    glScaled(1,1.5,0);
-    glTranslated(0,-15,0);
+    glScaled(1, 1.5, 0);
+    glTranslated(0, -15, 0);
     boxMenu();
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(0,8,0);
+    glTranslated(0, 8, 0);
     cetakHasilAkhir();
     glPopMatrix();
 
     glPushMatrix();
-    glScaled(1,0.6,0);
-    glTranslated(0,23,0);
+    glScaled(1, 0.6, 0);
+    glTranslated(0, 23, 0);
     relativeMenu();
     output(78.5, 44, 0, 0, 0, menu, GLUT_BITMAP_HELVETICA_18);
-    glTranslated(0,-8,0);
+    glTranslated(0, -8, 0);
     relativeMenu();
     output(81.5, 44, 0, 0, 0, "Exit", GLUT_BITMAP_HELVETICA_18);
     glPopMatrix();
 
 }
 
-//Movement
-
+//Keyboard and Mouse Listener
 void keyboardListener(int key, int x, int y) {
     if (key == GLUT_KEY_LEFT) {
         if (tomoMove != -44) {
@@ -1395,45 +1386,47 @@ void keyboardListener(int key, int x, int y) {
     }
 }
 
-void mouseListenner(int button, int state, int x, int y){
-    int posX,posY;
-    posX = x/8;
-    posY = 91-(y/8);
+void mouseListenner(int button, int state, int x, int y) {
+    int posX, posY;
+    posX = x / 8;
+    posY = 91 - (y / 8);
     char debug[100];
 //    printf("x : %d Y : %d\n",posX,posY);
-    if(button == GLUT_LEFT_BUTTON && state == GLUT_ENTERED){
-        if(posX>74 && posX<93 && posY>41 && posY< 48){
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_ENTERED) {
+        if (posX > 74 && posX < 93 && posY > 41 && posY < 48) {
             resetAll();
             mouseColision = true;
         }
-        if(posX>74 && posX<93 && posY>37 && posY< 42){
+        if (posX > 74 && posX < 93 && posY > 37 && posY < 42) {
             resetAll();
         }
-        if(posX>74 && posX<93 && posY>35 && posY< 39){
+        if (posX > 74 && posX < 93 && posY > 35 && posY < 39) {
             exit(0);
         }
     }
     glutPostRedisplay();
 }
 
+//Reset for All atribut
 void resetAll() {
     nyawa = 5;
-    waktuBom=0;
-    waktuTimer=0;
-    waktuUmum=0;
+    waktuBom = 0;
+    waktuTimer = 0;
+    waktuUmum = 0;
     scane3 = false;
     jam = 0;
     menit = 0;
     for (int i = 0; i < 4; ++i) {
-        pesawat[i].moveX=0;
+        pesawat[i].moveX = 0;
     }
-    mouseColision= true;
+    mouseColision = true;
 }
 
+//glutTimerFunc for movement and Timer
 void bomGravitation(int a) {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < i + 1; ++j) {
-            pesawat[i].bom[j].moveBomY --;
+            pesawat[i].bom[j].moveBomY--;
         }
     }
     for (int i = 0; i < 4; ++i) {
@@ -1443,13 +1436,13 @@ void bomGravitation(int a) {
             }
         }
     }
-    if(colisionCek){
+    if (colisionCek) {
         for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < i+1; ++j) {
-                if (pesawat[i].bom[j].glCollision(tomoColisionPoint)){
+            for (int j = 0; j < i + 1; ++j) {
+                if (pesawat[i].bom[j].glCollision(tomoColisionPoint)) {
                     nyawa--;
-                    pesawat[i].bom[j].moveBomY=200;
-                    pesawat[i].bom[j].moveBomX=200;
+                    pesawat[i].bom[j].moveBomY = 200;
+                    pesawat[i].bom[j].moveBomX = 200;
                     tomorespawn = true;
                 }
             }
@@ -1460,7 +1453,7 @@ void bomGravitation(int a) {
 }
 
 void generalTimer(int b) {
-    if(mouseColision){
+    if (mouseColision) {
         waktuUmum++;
         waktuTimer++;
     }
@@ -1468,7 +1461,7 @@ void generalTimer(int b) {
 }
 
 void generalMovement(int a) {
-    if(mouseColision) {
+    if (mouseColision) {
         pesawat[0].moveX++;
         if (pesawat[0].moveX > 200) {
             pesawat[0].moveX -= 220;
@@ -1538,29 +1531,29 @@ void generalMovement(int a) {
     glutTimerFunc(1, generalMovement, 1);
 }
 
-void spawnTimer(int a){
+void spawnTimer(int a) {
     spawn++;
-    if(tomorespawn){
+    if (tomorespawn) {
         colisionCek = false;
         penanda++;
-        if(spawn % 2 == 0){
-            tomoMove-=200;
-        }else{
-            tomoMove+=200;
+        if (spawn % 2 == 0) {
+            tomoMove -= 200;
+        } else {
+            tomoMove += 200;
         }
 
     }
-    if(penanda == 10){
+    if (penanda == 10) {
         penanda = 0;
         tomorespawn = false;
         colisionCek = true;
     }
     glutPostRedisplay();
-    glutTimerFunc(100,spawnTimer,1);
+    glutTimerFunc(100, spawnTimer, 1);
 }
 
 void timerBom(int a) {
-    if (mouseColision){
+    if (mouseColision) {
         waktuBom++;
     }
     if (waktuBom == 150) {
@@ -1570,53 +1563,52 @@ void timerBom(int a) {
     glutTimerFunc(10, timerBom, 1);
 }
 
-void saveNewHighScore(int a){
+//File Processing For HighScore
+void saveNewHighScore(int a) {
     std::string high = std::to_string(a);
     std::fstream file;
-    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt",std::ios::out);
-    file<<high;
+    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt", std::ios::out);
+    file << high;
     file.close();
 }
 
-void getHighScore(){
+void getHighScore() {
     std::fstream file;
     char x;
     std::string line;
-    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt",std::ios::in);
-    while (std::getline(file,line)){
-        printf("High Score = %s\n",line.c_str());
+    file.open("/home/infraspinatus/CLionProjects/Grafika-Sepuluh-November/HighScore.txt", std::ios::in);
+    while (std::getline(file, line)) {
+        //printf("High Score = %s\n",line.c_str());
         HighScore = stoi(line);
     }
     file.close();
-    printf("High Score = %d\n",HighScore);
-    cekHighScore();
+    printf("High Score = %d\n", HighScore);
 }
 
-void displayMe(void)
-{
+//Display Logic
+void displayMe(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 //    scaneTiga();
     scaneSatu();
-    if(mouseColision){
+    if (mouseColision) {
         scaneDua();
-        if(nyawa == 0){
+        if (nyawa == 0) {
             mouseColision = false;
             scane3 = true;
         }
     }
-    if(scane3){
-        if(waktuUmum > HighScore){
+    if (scane3) {
+        if (waktuUmum > HighScore) {
             HighScore = waktuUmum;
             saveNewHighScore(HighScore);
         }
         scaneTiga();
     }
-    printf("time %d\n",waktuUmum);
+    printf("time %d\n", waktuUmum);
     glutSwapBuffers();
 }
 
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
     getHighScore();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
@@ -1626,11 +1618,11 @@ int main(int argc, char** argv)
     glutDisplayFunc(displayMe);
     glutSpecialFunc(keyboardListener);
     glutMouseFunc(mouseListenner);
-    glutTimerFunc(1,generalMovement,0);
-    glutTimerFunc(10,bomGravitation,0);
-    glutTimerFunc(1000,generalTimer,0);
-    glutTimerFunc(10,timerBom,0);
-    glutTimerFunc(100,spawnTimer,0);
+    glutTimerFunc(1, generalMovement, 0);
+    glutTimerFunc(10, bomGravitation, 0);
+    glutTimerFunc(1000, generalTimer, 0);
+    glutTimerFunc(10, timerBom, 0);
+    glutTimerFunc(100, spawnTimer, 0);
     gluOrtho2D(0, 171, 0, 91);
     glutMainLoop();
     return 0;

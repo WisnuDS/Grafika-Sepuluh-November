@@ -51,7 +51,7 @@ public:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBegin(GL_POLYGON);
-        glColor4f(0, 0, 0, 0);
+        glColor4f(0, 0, 0, 1);
         glVertex2f(15.5, 86);
         glVertex2f(20.5, 86);
         glVertex2f(20.5, 80.5);
